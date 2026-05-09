@@ -22,13 +22,13 @@ int initOBBModel(const char *modelPath, bool useGPU)
 {
     std::cout << "start init" << std::endl;
 
-    if(detModel != nullptr)
+    if(obbDetModel != nullptr)
     {
-        Raivas_Destroy(detModel);
+        RaivasOBB_Destroy(obbDetModel);
     }
-    detModel = Raivas_Create();
+    obbDetModel = RaivasOBB_Create();
 
-    Raivas_Init(detModel, modelPath, 0.25f, false);
+    RaivasOBB_Init(obbDetModel, modelPath, 0.25f, false);
     std::cout << "finish init" << std::endl;
 
     return 0;
@@ -78,7 +78,7 @@ int runOBB(cv::Mat &img, int &len)
         // std::vector<std::vector<int>> linesOCRindex;
         // rt = detModel.Det(&imgBGR, &locateOCRroi);
 
-        rt = Raivas_Detect(detModel, &imgBGR, &locateOBBroi);
+        rt = RaivasOBB_Detect(obbDetModel, &imgBGR, &locateOBBroi);
 
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();

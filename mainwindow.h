@@ -25,6 +25,12 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_init_seg_clicked();
+
+    void on_pushButton_det_seg_clicked();
+
+    void on_pushButton_showresult_seg_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

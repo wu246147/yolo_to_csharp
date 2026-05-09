@@ -29,6 +29,8 @@ endif()
 #alg
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/alg/include)
 link_libraries(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/alg/lib/opencv_onnx_obb_lib.lib)
+link_libraries(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/alg/lib/opencv_onnx_seg_lib.lib)
+link_libraries(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/alg/lib/opencv_onnx_det_lib.lib)
 
 #opencv
 set(OpenCV_DIR "D:\\opencv4.8.0\\opencv\\build\\x64\\vc16\\lib")
@@ -37,13 +39,31 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 
-# 库
+
+# obb 库
 add_library(RaiVasAlgOBBDet SHARED
     raivasalgobbdet.h
     raivasalgobbdet.cpp
 )
 
 target_link_libraries (RaiVasAlgOBBDet PRIVATE ${OpenCV_LIBS}  ${ORT_LIB})
+
+# det 库
+add_library(RaiVasAlgDet SHARED
+    raivasalgdet.h
+    raivasalgdet.cpp
+)
+
+target_link_libraries (RaiVasAlgDet PRIVATE ${OpenCV_LIBS}  ${ORT_LIB})
+
+# seg 库
+add_library(RaiVasAlgSeg SHARED
+    raivasalgseg.h
+    raivasalgseg.cpp
+)
+
+target_link_libraries (RaiVasAlgSeg PRIVATE ${OpenCV_LIBS}  ${ORT_LIB})
+
 
 # demo
 set(PROJECT_SOURCES
@@ -60,6 +80,8 @@ add_executable(ocr_alg_yolo_obb_opencv
 target_link_libraries(ocr_alg_yolo_obb_opencv PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(ocr_alg_yolo_obb_opencv PRIVATE ${OpenCV_LIBS}  ${ORT_LIB})
 target_link_libraries (ocr_alg_yolo_obb_opencv PRIVATE RaiVasAlgOBBDet)
+target_link_libraries (ocr_alg_yolo_obb_opencv PRIVATE RaiVasAlgDet)
+target_link_libraries (ocr_alg_yolo_obb_opencv PRIVATE RaiVasAlgSeg)
 
 # # 库打包
 

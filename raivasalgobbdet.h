@@ -4,7 +4,7 @@
 #include "yoloobbonnx.h"
 #include <opencv2/opencv.hpp>
 
-static RaivasHandle detModel;
+static RaivasOBBHandle obbDetModel;
 
 ///
 /// \brief initModel 初始化模型

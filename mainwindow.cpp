@@ -1,7 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "raivasalgobbdet.h"
-
+#include "raivasalgseg.h"
 
 void drawRotatedRect(cv::Mat& img,
                      const cv::RotatedRect& rr,
@@ -126,5 +126,79 @@ void MainWindow::on_pushButton_4_clicked()
         cv::waitKey(100);
     }
 
+}
+
+
+void MainWindow::on_pushButton_init_seg_clicked()
+{
+    std::string path = ui->lineEdit_openmodel_seg->text().toStdString();
+    bool useGPU = ui->checkBox->isChecked();
+
+    float thre = ui->doubleSpinBox_thre_seg->value();
+    initSegModel(path.data(), useGPU);
+    setSegPara(thre);
+
+}
+
+
+void MainWindow::on_pushButton_det_seg_clicked()
+{
+    std::string path = ui->lineEdit_openfile_seg->text().toStdString();
+    img = cv::imread(path, 0);
+    auto start = std::chrono::high_resolution_clock::now();
+    runSeg(img, len);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+    std::cout << "Seg total:" << duration << "ms" << std::endl;
+    std::cout << "-----------------------------------" << std::endl;
+
+}
+
+
+void MainWindow::on_pushButton_showresult_seg_clicked()
+{
+    std::cout << "result len:" << len << std::endl;
+    cv::Mat imgGray = img.clone();
+    cv::Mat imgShow;
+    cv::cvtColor(imgGray, imgShow, cv::COLOR_GRAY2BGR);
+    if(!imgShow.empty())
+    {
+        for(int id = 0; id < len; id++)
+        {
+            int locateOCRClassId ;
+            float locateOCRScore;
+            float locateOCRX ;
+            float locateOCRY ;
+            float locateOCRW ;
+            float locateOCRH ;
+            cv::Mat mask;
+            std::cout << "getOCRAndDepthResult:" << id << std::endl;
+            getSegResult(id, &locateOCRClassId, &locateOCRScore, &locateOCRX, &locateOCRY,
+                         &locateOCRW, &locateOCRH,
+                         mask);
+
+            //显示框
+            cv::Rect2d box(locateOCRX - locateOCRW / 2, locateOCRY - locateOCRH / 2, locateOCRW, locateOCRH);
+            cv::rectangle(imgShow, box, cv::Scalar(0, 0, 255), 2);
+
+            //显示mask
+            cv::Vec3b color(rand() % 255, rand() % 255, rand() % 255);
+            for(int y = 0; y < imgShow.rows; y++)
+                for(int x = 0; x < imgShow.cols; x++)
+                    if(mask.at<uchar>(y, x) > 0)
+                        imgShow.at<cv::Vec3b>(y, x) =
+                            imgShow.at<cv::Vec3b>(y, x) * 0.5 + color * 0.5;
+
+            //显示类别
+            cv::putText(imgShow, std::to_string(locateOCRClassId + 1), cv::Point(box.tl().x, box.tl().y - 10), cv::FONT_HERSHEY_SIMPLEX,
+                        1, cv::Scalar(0, 0, 0), 2);
+
+
+        }
+        // std::cout << "finish show result" << std::endl;
+        cv::namedWindow("result", cv::WINDOW_NORMAL);
+        cv::imshow("result", imgShow);
+        cv::waitKey(100);
+    }
 }
 

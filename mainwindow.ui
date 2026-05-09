@@ -14,139 +14,294 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit_openmodel">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>78</y>
-      <width>233</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>E:\code\study\qt\opencv_onnxruntime\data/yolo11s-obb_leike.onnx</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>268</y>
-      <width>89</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>结果显示</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>38</y>
-      <width>53</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>图片地址</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>224</y>
-      <width>89</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>模型检测</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>178</y>
-      <width>89</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>使用gpu</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>78</y>
-      <width>53</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>模型地址</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_openfile">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>38</y>
-      <width>233</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>E:\code\study\qt\opencv_onnxruntime\data/TEST1.png</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>180</y>
-      <width>89</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>模型初始化</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>120</y>
-      <width>53</width>
-      <height>15</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>阈值</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_thre">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>120</y>
-      <width>231</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>1.000000000000000</double>
-    </property>
-    <property name="value">
-     <double>0.500000000000000</double>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>obb</string>
+       </attribute>
+       <widget class="QLineEdit" name="lineEdit_openfile">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>20</y>
+          <width>233</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>E:\code\study\qt\opencv_onnxruntime\data/TEST1.png</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_openmodel">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>60</y>
+          <width>233</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>E:\code\study\qt\opencv_onnxruntime\data/yolo11s-obb_leike.onnx</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>102</y>
+          <width>53</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>阈值</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>250</y>
+          <width>89</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>结果显示</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>60</y>
+          <width>53</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>模型地址</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>160</y>
+          <width>89</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>使用gpu</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>53</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>图片地址</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_thre">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>102</y>
+          <width>231</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.500000000000000</double>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>206</y>
+          <width>89</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>模型检测</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>162</y>
+          <width>89</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>模型初始化</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>seg</string>
+       </attribute>
+       <widget class="QLineEdit" name="lineEdit_openmodel_seg">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>58</y>
+          <width>233</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>E:\code\study\qt\opencv_onnxruntime\data\seg/yolo11s-seg.onnx</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>100</y>
+          <width>53</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>阈值</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_showresult_seg">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>248</y>
+          <width>89</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>结果显示</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>58</y>
+          <width>53</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>模型地址</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>158</y>
+          <width>89</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>使用gpu</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_openfile_seg">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>18</y>
+          <width>233</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>E:\code\study\qt\opencv_onnxruntime\data\seg/test.png</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>18</y>
+          <width>53</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>图片地址</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_thre_seg">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>100</y>
+          <width>231</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.500000000000000</double>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_det_seg">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>204</y>
+          <width>89</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>模型检测</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_init_seg">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>160</y>
+          <width>89</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>模型初始化</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
